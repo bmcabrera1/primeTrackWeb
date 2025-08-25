@@ -10,6 +10,7 @@ export default defineConfig({
     react(),
     tailwind()
   ],
+  base: "primeTrackWeb",
   resolve: {
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) }
   }
