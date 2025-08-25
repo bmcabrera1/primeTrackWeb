@@ -1,5 +1,5 @@
 import { MotionTransition } from "@/components/layout/transition-component";
-import { fadeIn } from "../lib/motion-transitions";
+import { fadeIn } from "@/lib/motion-transitions";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -33,8 +33,8 @@ const featuresList = [
 
 const PlansPage = () => {
   return (
-    <div className="pt-24 md:pt-32">
-      <section className="py-20 bg-gray-900">
+    <div>
+      <section className="section bg-neutral-900">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
@@ -43,9 +43,8 @@ const PlansPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Compara Nuestros Planes
             </h1>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              Encuentra la solución perfecta para tu flota. Todos nuestros
-              planes están diseñados para escalar contigo.
+            <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+              Encuentra la solución perfecta para tu flota.
             </p>
           </MotionTransition>
 
@@ -53,14 +52,14 @@ const PlansPage = () => {
             variants={fadeIn("bottom", 0.5)}
             className="overflow-x-auto"
           >
-            <table className="w-full min-w-[800px] text-left border-collapse">
+            <table className="w-full min-w-[860px] text-left border-collapse card overflow-hidden">
               <thead>
-                <tr className="border-b border-gray-700">
+                <tr className="bg-neutral-800/70">
                   <th className="p-4 text-xl font-bold w-1/3">
                     Características
                   </th>
                   <th className="p-4 text-center text-xl font-bold">Básico</th>
-                  <th className="p-4 text-center text-xl font-bold bg-blue-600/10 rounded-t-lg">
+                  <th className="p-4 text-center text-xl font-bold bg-primary/10">
                     Profesional
                   </th>
                   <th className="p-4 text-center text-xl font-bold">
@@ -72,39 +71,37 @@ const PlansPage = () => {
                 {featuresList.map((feature, index) => (
                   <tr
                     key={index}
-                    className="border-b border-gray-800 hover:bg-gray-800/50"
+                    className="border-t border-neutral-700/60 hover:bg-neutral-800/50"
                   >
                     <td className="p-4 font-semibold">{feature.name}</td>
                     <td className="p-4 text-center">
                       {typeof feature.basic === "boolean" ? (
                         feature.basic ? (
-                          <CheckCircle2 className="mx-auto text-green-500" />
+                          <CheckCircle2 className="mx-auto text-primary" />
                         ) : (
-                          <XCircle className="mx-auto text-red-500" />
+                          <XCircle className="mx-auto text-secondary" />
                         )
                       ) : (
                         <span>{feature.basic}</span>
                       )}
                     </td>
-                    <td className="p-4 text-center bg-blue-600/10">
+                    <td className="p-4 text-center bg-primary/10">
                       {typeof feature.pro === "boolean" ? (
                         feature.pro ? (
-                          <CheckCircle2 className="mx-auto text-green-400" />
+                          <CheckCircle2 className="mx-auto text-primary" />
                         ) : (
-                          <XCircle className="mx-auto text-red-400" />
+                          <XCircle className="mx-auto text-secondary" />
                         )
                       ) : (
-                        <span className="font-bold text-white">
-                          {feature.pro}
-                        </span>
+                        <span className="font-bold">{feature.pro}</span>
                       )}
                     </td>
                     <td className="p-4 text-center">
                       {typeof feature.enterprise === "boolean" ? (
                         feature.enterprise ? (
-                          <CheckCircle2 className="mx-auto text-green-500" />
+                          <CheckCircle2 className="mx-auto text-primary" />
                         ) : (
-                          <XCircle className="mx-auto text-red-500" />
+                          <XCircle className="mx-auto text-secondary" />
                         )
                       ) : (
                         <span>{feature.enterprise}</span>
@@ -112,29 +109,20 @@ const PlansPage = () => {
                     </td>
                   </tr>
                 ))}
-                <tr className="bg-gray-800/20">
+                <tr className="bg-neutral-800/30">
                   <td className="p-4"></td>
                   <td className="p-4 text-center">
-                    <NavLink
-                      to="/contact"
-                      className="px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 hover:bg-gray-600"
-                    >
+                    <NavLink to="/contact" className="btn-secondary">
                       Elegir
                     </NavLink>
                   </td>
-                  <td className="p-4 text-center bg-blue-600/10 rounded-b-lg">
-                    <NavLink
-                      to="/contact"
-                      className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-lg transition-colors duration-300 hover:bg-blue-500"
-                    >
+                  <td className="p-4 text-center bg-primary/10">
+                    <NavLink to="/contact" className="btn-primary">
                       Elegir Plan
                     </NavLink>
                   </td>
                   <td className="p-4 text-center">
-                    <NavLink
-                      to="/contact"
-                      className="px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 hover:bg-gray-600"
-                    >
+                    <NavLink to="/contact" className="btn-secondary">
                       Elegir
                     </NavLink>
                   </td>

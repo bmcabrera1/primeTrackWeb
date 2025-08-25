@@ -12,17 +12,20 @@ function App() {
   const location = useLocation();
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen flex flex-col">
       <Header />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/plans" element={<PlansPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-      </AnimatePresence>
+      <div className="flex-1 pt-24 md:pt-28">
+        {/* espacio bajo el header fijo */}
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/plans" element={<PlansPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </AnimatePresence>
+      </div>
       <Footer />
     </main>
   );

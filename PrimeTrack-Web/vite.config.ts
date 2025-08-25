@@ -1,19 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import tailwindcss from '@tailwindcss/vite'
-import path from "path"
+import { defineConfig } from "vite";
+import svgr from "vite-plugin-svgr";
+import react from "@vitejs/plugin-react-swc";
+import tailwind from "@tailwindcss/vite";
+import { fileURLToPath, URL } from "node:url";
 
-
-
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react(), 
-    tailwindcss(),
+    svgr(),   // 👈 debe ir primero para capturar .svg
+    react(),
+    tailwind()
   ],
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-})
+    alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) }
+  }
+});

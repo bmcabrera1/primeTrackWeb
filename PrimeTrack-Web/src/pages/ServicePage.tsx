@@ -1,5 +1,5 @@
 import { MotionTransition } from "@/components/layout/transition-component";
-import { fadeIn } from "../lib/motion-transitions";
+import { fadeIn } from "@/lib/motion-transitions";
 import {
   MapPin,
   Smartphone,
@@ -15,37 +15,32 @@ const services = [
     icon: <MapPin />,
     title: "Rastreo GPS en Tiempo Real",
     description:
-      "Monitorea la ubicación exacta de tu flota 24/7 con precisión milimétrica.",
+      "Monitorea la ubicación exacta de tu flota 24/7 con precisión.",
   },
   {
     icon: <Smartphone />,
-    title: "Aplicación Móvil Intuitiva",
-    description:
-      "Gestiona tus vehículos desde cualquier lugar con nuestra app para iOS y Android.",
+    title: "App Móvil Intuitiva",
+    description: "Gestiona tu flota desde iOS y Android.",
   },
   {
     icon: <BarChart2 />,
     title: "Analítica y Reportes",
-    description:
-      "Obtén informes detallados sobre rendimiento, consumo de combustible y más.",
+    description: "Informes sobre rendimiento y combustible.",
   },
   {
     icon: <Shield />,
     title: "Alertas de Seguridad",
-    description:
-      "Recibe notificaciones instantáneas sobre excesos de velocidad, geocercas y paradas no autorizadas.",
+    description: "Velocidad, geocercas y paradas no autorizadas.",
   },
   {
     icon: <Package />,
-    title: "Gestión de Mantenimiento",
-    description:
-      "Programa y lleva un registro de los mantenimientos preventivos y correctivos.",
+    title: "Mantenimiento",
+    description: "Programación y registro de mantenimientos.",
   },
   {
     icon: <Zap />,
     title: "Optimización de Rutas",
-    description:
-      "Ahorra tiempo y combustible con nuestro algoritmo de planificación de rutas inteligentes.",
+    description: "Ahorra tiempo y combustible con planificación inteligente.",
   },
 ];
 
@@ -55,7 +50,7 @@ const plans = [
     price: "49",
     features: [
       "Rastreo en Tiempo Real",
-      "Historial de 30 días",
+      "Historial 30 días",
       "Alertas Básicas",
       "Soporte por Email",
     ],
@@ -67,7 +62,7 @@ const plans = [
     features: [
       "Todo en Básico",
       "Optimización de Rutas",
-      "Gestión de Mantenimiento",
+      "Mantenimiento",
       "App Móvil Completa",
       "Soporte Prioritario",
     ],
@@ -78,10 +73,10 @@ const plans = [
     price: "Custom",
     features: [
       "Todo en Profesional",
-      "API de Integración",
+      "API",
       "Analítica Avanzada",
-      "Soporte Dedicado 24/7",
-      "Capacitación Personalizada",
+      "Soporte 24/7",
+      "Capacitación",
     ],
     recommended: false,
   },
@@ -89,9 +84,9 @@ const plans = [
 
 const ServicesPage = () => {
   return (
-    <div className="pt-24 md:pt-32">
-      {/* Main Services */}
-      <section className="py-20 bg-gray-900">
+    <div>
+      {/* Servicios */}
+      <section className="section bg-neutral-900">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
@@ -100,24 +95,23 @@ const ServicesPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Nuestros Servicios
             </h1>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              Soluciones integrales diseñadas para potenciar la eficiencia de tu
-              flota y llevar tu negocio al siguiente nivel.
+            <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+              Soluciones integrales para la eficiencia de tu flota.
             </p>
           </MotionTransition>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {services.map((service, idx) => (
               <MotionTransition
-                key={index}
-                variants={fadeIn("bottom", 0.15 * (index + 1))}
+                key={idx}
+                variants={fadeIn("bottom", 0.12 * (idx + 1))}
               >
-                <div className="p-8 bg-gray-800 rounded-xl flex items-start gap-4 hover:bg-gray-700/50 transition-colors duration-300">
-                  <div className="text-blue-500 flex-shrink-0">
+                <div className="card p-6 flex items-start gap-4 hover:border-primary/50 transition-colors">
+                  <div className="text-primary flex-shrink-0">
                     {service.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-gray-400">{service.description}</p>
+                    <h3 className="text-xl font-bold mb-1">{service.title}</h3>
+                    <p className="text-neutral-400">{service.description}</p>
                   </div>
                 </div>
               </MotionTransition>
@@ -126,8 +120,8 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-20 bg-gray-800">
+      {/* Planes */}
+      <section id="planes" className="section bg-neutral-800">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
@@ -136,27 +130,26 @@ const ServicesPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Planes y Precios
             </h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              Elige el plan que mejor se adapte a las necesidades y al tamaño de
-              tu operación.
+            <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+              Elige el plan que se adapte a tu operación.
             </p>
           </MotionTransition>
-          <div className="grid lg:grid-cols-3 gap-8 items-center">
-            {plans.map((plan, index) => (
+          <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+            {plans.map((plan, i) => (
               <MotionTransition
-                key={index}
-                variants={fadeIn("bottom", 0.2 * (index + 1))}
-                className={`transform ${
-                  plan.recommended ? "lg:scale-110" : ""
-                }`}
+                key={i}
+                variants={fadeIn("bottom", 0.18 * (i + 1))}
+                className={plan.recommended ? "lg:scale-[1.04]" : ""}
               >
                 <div
-                  className={`p-8 rounded-xl shadow-2xl ${
-                    plan.recommended ? "bg-blue-600" : "bg-gray-900"
+                  className={`card p-8 relative ${
+                    plan.recommended
+                      ? "border-primary"
+                      : "border-neutral-700/60"
                   }`}
                 >
                   {plan.recommended && (
-                    <p className="text-center bg-white text-blue-600 font-bold py-1 px-4 rounded-full w-fit mx-auto -mt-12 mb-4">
+                    <p className="absolute -top-3 left-1/2 -translate-x-1/2 text-center bg-primary text-white font-bold py-1 px-4 rounded-full shadow-glow">
                       Recomendado
                     </p>
                   )}
@@ -165,32 +158,28 @@ const ServicesPage = () => {
                   </h3>
                   <p className="text-5xl font-extrabold text-center mb-6">
                     {plan.price !== "Custom" ? `$${plan.price}` : ""}
-                    <span
-                      className={`text-lg font-normal ${
-                        plan.recommended ? "text-gray-200" : "text-gray-400"
-                      }`}
-                    >
+                    <span className="text-lg font-normal text-neutral-400 ml-2">
                       {plan.price !== "Custom" ? "/mes" : "Personalizado"}
                     </span>
                   </p>
                   <ul className="space-y-4 mb-8">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-3">
                         <ShieldCheckIcon
                           className={`w-5 h-5 ${
-                            plan.recommended ? "text-white" : "text-blue-500"
+                            plan.recommended ? "text-primary" : "text-primary"
                           }`}
                         />
-                        <span>{feature}</span>
+                        <span className="text-neutral-100">{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <button
-                    className={`w-full py-3 font-bold rounded-lg transition-colors duration-300 ${
+                    className={
                       plan.recommended
-                        ? "bg-white text-blue-600 hover:bg-gray-200"
-                        : "bg-blue-600 text-white hover:bg-blue-500"
-                    }`}
+                        ? "btn-primary w-full"
+                        : "btn-secondary w-full"
+                    }
                   >
                     {plan.price === "Custom"
                       ? "Contactar Ventas"
@@ -203,26 +192,25 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Solutions Mockups */}
-      <section className="py-20 bg-gray-900">
+      {/* Mockup / Showcase */}
+      <section className="section bg-neutral-900">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">
               Nuestras Soluciones en Acción
             </h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              Una interfaz poderosa y amigable que te da el control total de tu
-              flota.
+            <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+              Una interfaz poderosa que te da control total.
             </p>
           </MotionTransition>
           <MotionTransition variants={fadeIn("bottom", 0.5)}>
             <img
               src="https://placehold.co/1200x600/1f2937/ffffff?text=Dashboard+Mockup"
               alt="Dashboard Mockup"
-              className="rounded-lg shadow-2xl mx-auto"
+              className="rounded-2xl shadow-2xl border border-neutral-700/60 mx-auto"
             />
           </MotionTransition>
         </div>
