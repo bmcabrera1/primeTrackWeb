@@ -6,11 +6,11 @@ import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [
-    svgr(),   // 👈 debe ir primero para capturar .svg
+    svgr(),
     react(),
     tailwind()
   ],
-  base: "primeTrackWeb",
+  base: "/primeTrackWeb/",
   resolve: {
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) }
   }
