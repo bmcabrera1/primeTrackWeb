@@ -17,25 +17,21 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    // CAMBIO 1: Se usa <header> como contenedor principal
     <motion.header
       variants={fadeIn("bottom", 0.2)}
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed z-50 w-full top-0 left-0 bg-neutral-900/90 backdrop-blur-md border-b border-primary/20"
+      className="fixed top-0 left-0 z-50 w-full bg-neutral-100/90 backdrop-blur-md border-b border-neutral-200"
     >
-      <div className="container flex items-center justify-between max-w-7xl mx-auto px-4 md:px-6 py-1 md:py-1">
-        {/* Logo más grande */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
+        {/* Logo */}
         <NavLink
           to="/"
           aria-label="PrimeTrack – Inicio"
           className="flex items-center gap-3"
         >
-          <LogoIcon
-            className="h-8 md:h-20 lg:h-[80px] w-auto"
-            aria-label="PrimeTrack"
-          />
+          <LogoIcon className="h-10 md:h-12 w-auto" aria-label="PrimeTrack" />
         </NavLink>
 
         {/* Desktop Nav */}
@@ -48,10 +44,14 @@ const Header = () => {
                   end={link.path === "/"}
                   className={({ isActive }) =>
                     [
+                      // subrayado animado
                       "relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
+                      // colores base/activo
                       isActive
                         ? "text-primary"
-                        : "text-gray-300 hover:text-white",
+                        : "text-neutral-700 hover:text-neutral-900",
+                      // accesibilidad
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded",
                     ].join(" ")
                   }
                 >
@@ -62,7 +62,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* CTA desktop (opcional) */}
+        {/* CTA desktop */}
         <button className="hidden md:inline-flex btn-primary">
           Acceder a mi cuenta
         </button>
@@ -70,24 +70,27 @@ const Header = () => {
         {/* Mobile toggle */}
         <button
           type="button"
-          aria-label="Abrir menú"
-          className="md:hidden p-2 rounded-xl hover:bg-white/5 transition"
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-controls="mobile-menu"
+          aria-expanded={isMenuOpen}
+          className="md:hidden p-2 rounded-xl hover:bg-neutral-200 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           onClick={() => setIsMenuOpen((v) => !v)}
         >
-          <Menu className="w-7 h-7 text-white" />
+          <Menu className="w-7 h-7 text-neutral-700" />
         </button>
       </div>
 
       {/* Menú móvil */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
+          <motion.nav
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden border-t border-primary/20 bg-neutral-900/95"
+            exit={{ opacity: 0, y: -6 }}
+            className="md:hidden border-t border-neutral-200 bg-white/95 backdrop-blur-sm shadow-sm"
           >
-            <ul className="flex flex-col px-4 py-3 space-y-2">
+            <ul className="flex flex-col px-4 py-3 space-y-1">
               {navLinks.map((link) => (
                 <li key={link.id}>
                   <NavLink
@@ -95,10 +98,11 @@ const Header = () => {
                     end={link.path === "/"}
                     className={({ isActive }) =>
                       [
-                        "block py-2",
+                        "block py-2 px-1 rounded-md transition",
                         isActive
-                          ? "text-primary"
-                          : "text-gray-300 hover:text-white",
+                          ? "text-primary bg-neutral-100"
+                          : "text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100",
+                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
                       ].join(" ")
                     }
                     onClick={() => setIsMenuOpen(false)}
@@ -107,8 +111,16 @@ const Header = () => {
                   </NavLink>
                 </li>
               ))}
+              <li className="pt-2">
+                <button
+                  className="w-full btn-primary"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Acceder a mi cuenta
+                </button>
+              </li>
             </ul>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </motion.header>

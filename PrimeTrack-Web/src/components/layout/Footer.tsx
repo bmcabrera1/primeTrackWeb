@@ -7,10 +7,14 @@ import {
 } from "lucide-react";
 
 const socialLinks = [
-  { icon: <Facebook />, href: "#" },
-  { icon: <Instagram />, href: "#" },
-  { icon: <MessageCircle />, href: "https://wa.me/593123456789" },
-  { icon: <MailIcon />, href: "mailto:info@primetrack.com" },
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+  {
+    icon: MessageCircle,
+    href: "https://wa.me/593123456789",
+    label: "WhatsApp",
+  },
+  { icon: MailIcon, href: "mailto:info@primetrack.com", label: "Correo" },
 ];
 
 const locations = [
@@ -29,77 +33,104 @@ const locations = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-gray-300 py-12">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="mt-20 bg-neutral-50 text-neutral-700 border-t border-neutral-200">
+      {/* Banda superior con degradado de marca */}
+      <div className="h-1 w-full bg-brand-gradient" aria-hidden />
+
+      <div className="mx-auto max-w-7xl px-4 md:px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-10">
           {/* Brand */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">
-              Prime<span className="text-secondary">Track</span>
+            <h2 className="text-3xl font-extrabold tracking-tight mb-3">
+              <span className="text-neutral-900">Prime</span>
+              <span className="text-brand-gradient">Track</span>
             </h2>
-            <p className="text-gray-400">
+            <p className="text-neutral-600">
               Revolucionando la logística con tecnología e innovación.
             </p>
-            <div className="flex gap-4 mt-4">
-              {socialLinks.map((link, index) => (
+
+            <div className="flex gap-3 mt-5">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
-                  key={index}
-                  href={link.href}
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                  aria-label={label}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-white shadow-sm hover:shadow transition
+                             hover:-translate-y-0.5 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 >
-                  {link.icon}
+                  <Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Enlaces Rápidos</h3>
+          <nav aria-label="Enlaces rápidos">
+            <h3 className="font-semibold text-neutral-900 text-lg mb-4">
+              Enlaces Rápidos
+            </h3>
             <ul className="space-y-2">
               <li>
-                <NavLink to="/about-us" className="hover:text-blue-500">
+                <NavLink
+                  to="/about-us"
+                  className="hover:text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded"
+                >
                   Sobre Nosotros
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/services" className="hover:text-blue-500">
+                <NavLink
+                  to="/services"
+                  className="hover:text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded"
+                >
                   Servicios
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/plans" className="hover:text-blue-500">
+                <NavLink
+                  to="/plans"
+                  className="hover:text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded"
+                >
                   Planes
                 </NavLink>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-500">
+                <a
+                  href="#"
+                  className="hover:text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded"
+                >
                   Plataforma Web
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-500">
+                <a
+                  href="#"
+                  className="hover:text-primary underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 rounded"
+                >
                   App Móvil
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Locations */}
           <div className="md:col-span-2">
-            <h3 className="font-bold text-lg mb-4">Nuestras Oficinas</h3>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              {locations.map((loc, index) => (
-                <p key={index} className="text-gray-400">
+            <h3 className="font-semibold text-neutral-900 text-lg mb-4">
+              Nuestras Oficinas
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+              {locations.map((loc) => (
+                <p key={loc} className="text-neutral-600">
                   {loc}
                 </p>
               ))}
             </div>
           </div>
         </div>
-        <div className="border-t border-gray-700 pt-6 text-center text-gray-500">
+
+        <div className="border-t border-neutral-200 pt-6 text-center text-neutral-500">
           <p>
             &copy; {new Date().getFullYear()} PrimeTrack. Todos los derechos
             reservados.

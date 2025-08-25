@@ -47,17 +47,17 @@ const leaders = [
   {
     name: "Juan Pérez",
     role: "CEO & Fundador",
-    image: "https://placehold.co/400x400/1f2937/ffffff?text=JP",
+    image: "https://placehold.co/600x600/e5e7eb/111827?text=JP",
   },
   {
     name: "María García",
     role: "Directora de Operaciones",
-    image: "https://placehold.co/400x400/1f2937/ffffff?text=MG",
+    image: "https://placehold.co/600x600/e5e7eb/111827?text=MG",
   },
   {
     name: "Carlos Rodríguez",
     role: "Director de Tecnología",
-    image: "https://placehold.co/400x400/1f2937/ffffff?text=CR",
+    image: "https://placehold.co/600x600/e5e7eb/111827?text=CR",
   },
 ];
 
@@ -65,16 +65,17 @@ const AboutUsPage = () => {
   return (
     <div>
       {/* Quiénes somos */}
-      <section className="section bg-neutral-800">
+      <section className="section bg-neutral-50">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <MotionTransition variants={fadeIn("right", 0.3)}>
-            <Building className="w-full h-auto text-primary/30" />
+            <Building className="w-full h-auto text-primary/20" />
           </MotionTransition>
+
           <MotionTransition variants={fadeIn("left", 0.5)}>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900">
               Nuestra Historia
             </h1>
-            <p className="text-lg text-neutral-300">
+            <p className="text-lg text-neutral-600">
               Desde 2015, PrimeTrack lidera la innovación logística en Ecuador.
               Simplificamos transporte y gestión de flotas con tecnología que
               genera resultados reales.
@@ -84,39 +85,49 @@ const AboutUsPage = () => {
       </section>
 
       {/* Timeline */}
-      <section className="section bg-neutral-900">
+      <section className="section bg-white">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900">
               Nuestra Trayectoria
             </h2>
           </MotionTransition>
+
           <div className="relative max-w-5xl mx-auto">
-            <div className="border-l-2 border-primary absolute h-full top-0 left-1/2 -translate-x-1/2"></div>
+            {/* Línea central */}
+            <div className="border-l-2 border-primary/70 absolute h-full top-0 left-1/2 -translate-x-1/2" />
+
             {timelineEvents.map((event, index) => (
               <MotionTransition
                 key={index}
                 variants={fadeIn("bottom", 0.2 * (index + 1))}
-                className="mb-8 flex justify-between items-center w-full"
+                className="mb-10 flex justify-between items-center w-full"
               >
+                {/* Tarjeta izquierda/derecha */}
                 <div
                   className={`w-5/12 ${
                     index % 2 === 0 ? "order-1 text-right" : "order-3 text-left"
                   }`}
                 >
-                  <div className="card p-4">
-                    <h3 className="font-bold text-xl mb-1">{event.title}</h3>
-                    <p className="text-neutral-400">{event.description}</p>
+                  <div className="card p-5">
+                    <h3 className="font-bold text-xl mb-1 text-neutral-900">
+                      {event.title}
+                    </h3>
+                    <p className="text-neutral-600">{event.description}</p>
                   </div>
                 </div>
-                <div className="z-10 flex items-center order-2 bg-neutral-900 shadow-xl w-16 h-16 rounded-full border-2 border-primary">
-                  <h1 className="mx-auto font-semibold text-lg text-primary">
+
+                {/* Burbujas de año */}
+                <div className="z-10 flex items-center justify-center order-2 bg-white shadow-xl w-16 h-16 rounded-full border-2 border-primary">
+                  <span className="font-semibold text-sm text-primary">
                     {event.year}
-                  </h1>
+                  </span>
                 </div>
+
+                {/* Columna vacía para balance */}
                 <div className="w-5/12 order-1" />
               </MotionTransition>
             ))}
@@ -125,24 +136,29 @@ const AboutUsPage = () => {
       </section>
 
       {/* Valores */}
-      <section className="section bg-neutral-800">
+      <section className="section bg-neutral-50">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold">Nuestros Valores</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900">
+              Nuestros Valores
+            </h2>
           </MotionTransition>
+
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <MotionTransition
                 key={index}
                 variants={fadeIn("bottom", 0.2 * (index + 1))}
               >
-                <div className="card p-8 text-center">
+                <div className="card p-8 text-center transition-shadow hover:shadow-brand">
                   <div className="flex justify-center mb-4">{value.icon}</div>
-                  <h3 className="text-2xl font-bold mb-2">{value.title}</h3>
-                  <p className="text-neutral-400">{value.description}</p>
+                  <h3 className="text-2xl font-bold mb-2 text-neutral-900">
+                    {value.title}
+                  </h3>
+                  <p className="text-neutral-600">{value.description}</p>
                 </div>
               </MotionTransition>
             ))}
@@ -151,34 +167,37 @@ const AboutUsPage = () => {
       </section>
 
       {/* Líderes */}
-      <section className="section bg-neutral-900">
+      <section className="section bg-white">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900">
               Conoce a Nuestros Líderes
             </h2>
           </MotionTransition>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {leaders.map((leader, i) => (
               <MotionTransition
                 key={i}
                 variants={fadeIn("bottom", 0.2 * (i + 1))}
               >
-                <div className="group relative overflow-hidden rounded-2xl border border-neutral-700/60">
+                <article className="group relative overflow-hidden rounded-2xl border border-neutral-200 shadow-lg">
                   <img
                     src={leader.image}
                     alt={leader.name}
-                    className="w-full h-auto transform group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/70 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-2xl font-bold">{leader.name}</h3>
+                    <h3 className="text-2xl font-bold text-white">
+                      {leader.name}
+                    </h3>
                     <p className="text-primary font-medium">{leader.role}</p>
                   </div>
-                </div>
+                </article>
               </MotionTransition>
             ))}
           </div>

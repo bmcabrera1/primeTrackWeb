@@ -17,27 +17,27 @@ import { motion } from "framer-motion";
 const clients = [
   {
     name: "TechCorp",
-    logo: "https://placehold.co/150x50/1f2937/ffffff?text=TechCorp",
+    logo: "https://placehold.co/150x50/e5e7eb/111827?text=TechCorp",
   },
   {
     name: "InnovateInc",
-    logo: "https://placehold.co/150x50/1f2937/ffffff?text=InnovateInc",
+    logo: "https://placehold.co/150x50/e5e7eb/111827?text=InnovateInc",
   },
   {
     name: "QuantumLeap",
-    logo: "https://placehold.co/150x50/1f2937/ffffff?text=QuantumLeap",
+    logo: "https://placehold.co/150x50/e5e7eb/111827?text=QuantumLeap",
   },
   {
     name: "FutureGadget",
-    logo: "https://placehold.co/150x50/1f2937/ffffff?text=FutureGadget",
+    logo: "https://placehold.co/150x50/e5e7eb/111827?text=FutureGadget",
   },
   {
     name: "SynergySys",
-    logo: "https://placehold.co/150x50/1f2937/ffffff?text=SynergySys",
+    logo: "https://placehold.co/150x50/e5e7eb/111827?text=SynergySys",
   },
   {
     name: "NextGen",
-    logo: "https://placehold.co/150x50/1f2937/ffffff?text=NextGen",
+    logo: "https://placehold.co/150x50/e5e7eb/111827?text=NextGen",
   },
 ];
 
@@ -60,17 +60,17 @@ const news = [
   {
     title: "Nueva Flota de Vehículos Eléctricos",
     description: "Tecnología eco-amigable para un futuro más verde.",
-    image: "https://placehold.co/600x400/2563eb/ffffff?text=Flota",
+    image: "https://placehold.co/600x400/7d2bff/ffffff?text=Flota", // primary-light
   },
   {
     title: "Expansión a Nivel Nacional",
     description: "Cobertura en las 24 provincias del Ecuador.",
-    image: "https://placehold.co/600x400/10b981/ffffff?text=Expansión",
+    image: "https://placehold.co/600x400/ff4a1a/ffffff?text=Expansión", // secondary-light
   },
   {
     title: "Premio a la Innovación Logística 2025",
     description: "Seguimiento en tiempo real reconocido.",
-    image: "https://placehold.co/600x400/f59e0b/ffffff?text=Premio",
+    image: "https://placehold.co/600x400/4b00bd/ffffff?text=Premio", // primary-dark
   },
 ];
 
@@ -102,23 +102,28 @@ const HomePage = () => {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative section bg-neutral-900">
-        <div className="absolute inset-0 bg-hero-grid bg-grid opacity-40 pointer-events-none" />
-        <div className="container mx-auto px-4 text-center max-w-5xl">
+      {/* Hero - claro con gradiente de marca */}
+      <section className="relative section bg-neutral-50">
+        <div className="absolute inset-0 opacity-10 pointer-events-none bg-brand-gradient" />
+        <div className="container mx-auto px-4 text-center max-w-5xl relative">
           <MotionTransition variants={fadeIn("bottom", 0.2)}>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-5 leading-tight">
-              La <span className="text-primary">Evolución</span> del Rastreo{" "}
-              <br className="hidden md:block" />
+            <span className="inline-block text-xs font-semibold tracking-widest text-neutral-500 uppercase mb-3">
+              Plataforma de rastreo en tiempo real
+            </span>
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-5 leading-tight text-neutral-900">
+              La <span className="text-brand-gradient">Evolución</span> del
+              Rastreo <br className="hidden md:block" />
               de Vehículos en Ecuador
             </h1>
           </MotionTransition>
+
           <MotionTransition variants={fadeIn("bottom", 0.35)}>
-            <p className="text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
               PrimeTrack optimiza rutas, reduce costos y garantiza entregas
               puntuales con tecnología de punta.
             </p>
           </MotionTransition>
+
           <MotionTransition variants={fadeIn("bottom", 0.5)}>
             <div className="flex items-center justify-center gap-4">
               <a href="#planes" className="btn-primary">
@@ -132,10 +137,10 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Clients */}
-      <section className="py-14 bg-neutral-800">
-        <div className="container mx-auto">
-          <h3 className="text-center text-sm tracking-widest text-neutral-400 mb-6 uppercase">
+      {/* Clients - banda clara con logos en gris */}
+      <section className="py-12 bg-white border-y border-neutral-200">
+        <div className="container mx-auto px-4">
+          <h3 className="text-center text-sm tracking-widest text-neutral-500 mb-6 uppercase">
             Con la confianza de empresas líderes
           </h3>
           <div className="relative overflow-hidden">
@@ -149,7 +154,7 @@ const HomePage = () => {
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="h-12 mx-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                    className="h-12 mx-auto grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                   />
                 </div>
               ))}
@@ -158,8 +163,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Stats */}
-      <section ref={ref} className="section bg-neutral-900">
+      {/* Stats - cards claras */}
+      <section ref={ref} className="section bg-neutral-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {stats.map((stat, i) => (
@@ -178,7 +183,7 @@ const HomePage = () => {
                     )}
                     {stat.suffix}
                   </h2>
-                  <p className="text-neutral-300 text-lg">{stat.label}</p>
+                  <p className="text-neutral-600 text-lg">{stat.label}</p>
                 </div>
               </MotionTransition>
             ))}
@@ -186,20 +191,21 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Reporte anual */}
-      <section className="section bg-neutral-800">
+      {/* Reporte anual - chart tema claro */}
+      <section className="section bg-white">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
             className="text-center mb-10"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-neutral-900">
               Nuestro Crecimiento
             </h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-neutral-600 max-w-2xl mx-auto">
               Escalamos operaciones con el respaldo de nuestros clientes.
             </p>
           </MotionTransition>
+
           <MotionTransition
             variants={fadeIn("bottom", 0.5)}
             className="w-full h-[380px] card p-4"
@@ -210,12 +216,15 @@ const HomePage = () => {
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#111827",
-                    border: "1px solid #374151",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #e5e7eb",
                     borderRadius: 12,
+                    color: "#111827",
                   }}
+                  labelStyle={{ color: "#374151" }}
+                  itemStyle={{ color: "#111827" }}
                 />
-                <Legend />
+                <Legend wrapperStyle={{ color: "#4b5563" }} />
                 <Bar
                   dataKey="Crecimiento"
                   fill="#6200F7"
@@ -228,20 +237,21 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Noticias */}
-      <section className="section bg-neutral-900">
+      {/* Noticias - cards claras con imagen */}
+      <section className="section bg-neutral-50">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-neutral-900">
               Noticias y Novedades
             </h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-neutral-600 max-w-2xl mx-auto">
               Lo último de PrimeTrack.
             </p>
           </MotionTransition>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item, i) => (
               <MotionTransition
@@ -257,8 +267,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-neutral-400">{item.description}</p>
+                    <h3 className="text-xl font-bold mb-2 text-neutral-900">
+                      {item.title}
+                    </h3>
+                    <p className="text-neutral-600">{item.description}</p>
                   </div>
                 </article>
               </MotionTransition>
@@ -267,30 +279,33 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ¿Por qué elegirnos? */}
-      <section className="section bg-neutral-800">
+      {/* ¿Por qué elegirnos? - cards claras con halo de marca al hover */}
+      <section className="section bg-white">
         <div className="container mx-auto px-4">
           <MotionTransition
             variants={fadeIn("bottom", 0.3)}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-neutral-900">
               ¿Por qué elegirnos?
             </h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">
+            <p className="text-neutral-600 max-w-2xl mx-auto">
               Tu socio estratégico en logística.
             </p>
           </MotionTransition>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyChooseUsItems.map((item, i) => (
               <MotionTransition
                 key={i}
                 variants={fadeIn("bottom", 0.2 * (i + 1))}
               >
-                <div className="card p-6 text-center hover:shadow-glow transition-shadow">
+                <div className="card p-6 text-center transition-shadow hover:shadow-brand">
                   <div className="flex justify-center mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-neutral-400">{item.description}</p>
+                  <h3 className="text-xl font-bold mb-2 text-neutral-900">
+                    {item.title}
+                  </h3>
+                  <p className="text-neutral-600">{item.description}</p>
                 </div>
               </MotionTransition>
             ))}
