@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Para servidor propio en raíz:
+        BASE_PATH: "/"
+        # Si la sirves en subpath, cambia a:
+        # BASE_PATH: "/primeTrackWeb/"
+    ports:
+      - "8080:80"
+    restart: unless-stopped
