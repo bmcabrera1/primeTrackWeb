@@ -15,7 +15,6 @@ const gradient = `linear-gradient(90deg, ${BRAND.PRIMARY}, ${BRAND.SECONDARY})`;
 const navLinks = [
   { id: 1, label: "Inicio", path: "/" },
   { id: 2, label: "Nosotros", path: "/about-us" },
-  { id: 3, label: "Servicios", path: "/services" },
   { id: 4, label: "Planes", path: "/plans" },
   { id: 5, label: "Contacto", path: "/contact" },
 ] as const;
