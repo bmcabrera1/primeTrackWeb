@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { fadeIn } from "@/lib/motion-transitions";
 import { Menu, X } from "lucide-react";
@@ -135,11 +135,14 @@ const Header = () => {
 
           {/* CTA desktop */}
           <div className="hidden md:block">
-            <PrimaryCta onClick={() => (window.location.href = "/login")}>
-              Acceder a mi cuenta
-            </PrimaryCta>
+            <a
+              href="https://primetrackgps.com/login"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <PrimaryCta>Acceder a mi cuenta</PrimaryCta>
+            </a>
           </div>
-
           {/* Toggle móvil */}
           <button
             type="button"
@@ -201,15 +204,16 @@ const Header = () => {
                   </li>
                 ))}
                 <li className="pt-2">
-                  <PrimaryCta
-                    className="w-full"
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      window.location.href = "/login";
-                    }}
+                  <a
+                    href="https://primetrackgps.com/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full block"
                   >
-                    Acceder a mi cuenta
-                  </PrimaryCta>
+                    <PrimaryCta className="w-full">
+                      Acceder a mi cuenta
+                    </PrimaryCta>
+                  </a>
                 </li>
               </ul>
             </motion.nav>

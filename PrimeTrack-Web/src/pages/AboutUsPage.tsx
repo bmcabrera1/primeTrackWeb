@@ -505,16 +505,13 @@ const AboutUsPage = () => {
 
           <MotionTransition variants={fadeIn("left", 0.35)}>
             <div>
-              <div className="inline-block text-xs md:text-sm font-semibold tracking-widest text-neutral-500 uppercase mb-3">
-                Sobre PrimeTrack
-              </div>
               <h1 className="text-4xl md:text-5xl font-extrabold mb-5 leading-tight text-neutral-900">
                 Nacimos en {foundingYear} para dar{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{ backgroundImage: gradient }}
                 >
-                  control y tranquilidad
+                  Control y Seguridad
                 </span>
               </h1>
               <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">

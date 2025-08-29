@@ -14,7 +14,7 @@ function App() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-1 pt-24 md:pt-28">
+      <div className="flex-1 pt-0 md:pt-0">
         {/* espacio bajo el header fijo */}
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>

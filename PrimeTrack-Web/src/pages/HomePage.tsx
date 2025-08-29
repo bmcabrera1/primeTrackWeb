@@ -578,7 +578,7 @@ function Pricing() {
             Planes simples y económicos
           </h2>
           <p className="text-neutral-600 max-w-2xl mx-auto">
-            Paga mes a mes. Sin contrato. Instalación rápida.
+            Paga mes a mes. Cobertura internacional. Instalación rápida.
           </p>
         </MotionTransition>
 
@@ -720,7 +720,7 @@ function CompareTable() {
             <ResponsivePicture
               src={`${BASE}img/FlotaVehiculos.jpg`}
               alt="Flota de vehículos monitoreados"
-              aspect="aspect-[4/5]"
+              aspect="aspect-[6/5]"
               formats={[]}
             />
           </div>
@@ -742,7 +742,7 @@ function Stats() {
       aria-label="Métricas clave"
     >
       <img
-        src={`${BASE}img/stats/bg.jpg`}
+        src={`${BASE}img/mapabg.jpg`}
         alt="Mapa tenue de fondo"
         className="absolute inset-0 w-full h-full object-cover opacity-10"
       />
