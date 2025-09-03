@@ -1,0 +1,21 @@
+version: "3.9"
+
+networks:
+  proxy:
+    external: true
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_PATH: "/"            # si sirves en raíz del dominio
+    restart: unless-stopped
+    networks: [proxy]
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=${VHOSTS}
+      - LETSENCRYPT_HOST=${VHOSTS}
+      - LETSENCRYPT_EMAIL=${EMAIL}

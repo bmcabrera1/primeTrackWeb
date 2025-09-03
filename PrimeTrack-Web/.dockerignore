@@ -1,9 +1,26 @@
-node_modules
-dist
-.git
-.gitignore
-.vscode
-npm-debug.log*
-pnpm-lock.yaml
-yarn.lock
-.DS_Store
+# Caches y artefactos
+.vite
+.turbo
+.cache
+.parcel-cache
+coverage
+*.log
+.eslintcache
+storybook-static
+cypress/
+__tests__/
+tests/
+
+# IDE/CI varios
+.idea
+.github
+.husky
+
+# Archivos de entorno (evita subir secretos al build)
+.env
+.env.*
+!.env.example   # (si mantienes un ejemplo sin secretos)
+
+# Cosas de Docker que no necesitas dentro de la imagen
+docker-compose*.yml
+scripts/
