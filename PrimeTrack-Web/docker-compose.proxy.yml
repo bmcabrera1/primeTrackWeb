@@ -24,6 +24,9 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       - SSL_POLICY=Mozilla-Modern
+    # (opcional) también puedes etiquetar:
+    # labels:
+    #   - com.github.nginx-proxy.nginx
 
   acme-companion:
     image: nginxproxy/acme-companion:latest
@@ -37,4 +40,5 @@ services:
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - DEFAULT_EMAIL=${EMAIL}
+      - DEFAULT_EMAIL=tu-email@dominio.com
+      - NGINX_PROXY_CONTAINER=nginx-proxy

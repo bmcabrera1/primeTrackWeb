@@ -16,22 +16,24 @@ const BRAND = {
 const gradient = `linear-gradient(90deg, ${BRAND.PRIMARY}, ${BRAND.SECONDARY})`;
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/primetrackec?igsh=dTYyemMzdnEzMGo2",
+    label: "Instagram",
+  },
   {
     icon: MessageCircle,
-    href: "https://wa.me/593123456789",
+    href: "https://wa.me/593992339274",
     label: "WhatsApp",
   },
-  { icon: MailIcon, href: "mailto:info@primetrack.com", label: "Correo" },
+  { icon: MailIcon, href: "mailto:erika-narvaez@hotmail.es", label: "Correo" },
 ];
 
 type Location = { city: string; address?: string };
 const locations: Location[] = [
-  { city: "Quito", address: "Galo Plaza Lasso 87-21 y Rafael Bustamante" },
+  { city: "Quito", address: "Av. 6 de Diciembre y de los Alamos" },
   {
     city: "Guayaquil",
-    address: "Cdla. Simón Bolívar. Av. Hno Miguel Mz 2 #76",
   },
   { city: "Cuenca" },
   { city: "Manta" },

@@ -53,11 +53,10 @@ const ContactPage: React.FC = () => {
   };
 
   const whatsappHref =
-    "https://wa.me/593123456789?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular.";
+    "https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular.";
 
   const mapsEmbedSrc =
-    "https://www.google.com/maps?output=embed&q=Galo%20Plaza%20Lasso%2087-21%20y%20Rafael%20Bustamante%2C%20Quito";
-
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.805595702777!2d-78.47723732532342!3d-0.14470513544321567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d58fff8ff40db1%3A0x9f578da496afcf71!2sDe%20los%20%C3%81lamos%20%26%20Av.%206%20de%20Diciembre%2C%20170138%20Quito!5e0!3m2!1ses-419!2sec!4v1756868429688!5m2!1ses-419!2sec";
   return (
     <div>
       <section className="section bg-neutral-50">
@@ -99,7 +98,6 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                  {/* Honeypot (oculto) */}
                   <input
                     type="text"
                     name="company_website"
@@ -275,7 +273,7 @@ const ContactPage: React.FC = () => {
                         <Phone className="w-5 h-5" />
                       </span>
                       <span className="group-hover:underline">
-                        (02) 123-4567
+                        (+593) 099-233-9274
                       </span>
                     </a>
 
@@ -291,7 +289,7 @@ const ContactPage: React.FC = () => {
                         <Mail className="w-5 h-5" />
                       </span>
                       <span className="group-hover:underline">
-                        info@primetrack.com
+                        erika-narvaez@hotmail.es
                       </span>
                     </a>
 
@@ -306,7 +304,7 @@ const ContactPage: React.FC = () => {
                       <div>
                         <p className="font-medium text-neutral-900">Quito</p>
                         <p className="text-neutral-700">
-                          Galo Plaza Lasso 87-21 y Rafael Bustamante
+                          Av. 6 de Diciembre y de los Alamos
                         </p>
                       </div>
                     </div>
@@ -323,9 +321,6 @@ const ContactPage: React.FC = () => {
                         <p className="font-medium text-neutral-900">Horario</p>
                         <p className="text-neutral-700">
                           Lun a Vie: 09h00 – 18h00
-                        </p>
-                        <p className="text-neutral-700">
-                          Soporte 24/7 para clientes activos
                         </p>
                       </div>
                     </div>

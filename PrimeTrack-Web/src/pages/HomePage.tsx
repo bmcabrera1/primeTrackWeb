@@ -351,7 +351,7 @@ function Hero() {
               Ver planes
             </PrimaryButton>
             <OutlineButton
-              href="https://wa.me/593XXXXXXXXX?text=Hola%20quiero%20una%20cotizaci%C3%B3n%20PrimeTrack"
+              href="https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular."
               target="_blank"
               rel="noopener"
               aria-label="Cotizar por WhatsApp"
@@ -622,18 +622,12 @@ function Pricing() {
                   ))}
                 </ul>
                 <a
-                  href={p.cta}
+                  href="https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular."
+                  target="_blank"
+                  rel="noopener"
                   className="mt-6 w-full inline-flex items-center justify-center px-4 py-3 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#6200F7] to-[#E73400] focus:outline-none focus:ring-4 focus:ring-purple-300"
                 >
                   Empezar ahora
-                </a>
-                <a
-                  href="https://wa.me/593XXXXXXXXX?text=Hola%20quiero%20cotizar%20el%20plan%20PrimeTrack"
-                  target="_blank"
-                  rel="noopener"
-                  className="mt-3 w-full inline-flex items-center justify-center px-4 py-3 rounded-2xl font-semibold border border-[#6200F7] text-[#6200F7] hover:bg-neutral-50 focus:outline-none focus:ring-4 focus:ring-purple-200"
-                >
-                  Cotizar por WhatsApp
                 </a>
               </Card>
             </MotionTransition>
@@ -1040,14 +1034,14 @@ function StickyCtaMobile() {
           <span className="text-xs font-medium">Planes</span>
         </a>
         <a
-          href="tel:+593XXXXXXXXX"
+          href="https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular."
           className="flex flex-col items-center py-2 rounded-xl hover:bg-neutral-50"
         >
           <PhoneCall className="w-5 h-5" aria-hidden="true" />
           <span className="text-xs font-medium">Llamar</span>
         </a>
         <a
-          href="https://wa.me/593XXXXXXXXX?text=Hola%20quiero%20una%20cotizaci%C3%B3n"
+          href="https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular."
           target="_blank"
           rel="noopener"
           className="flex flex-col items-center py-2 rounded-xl hover:bg-neutral-50"
@@ -1081,7 +1075,7 @@ function FinalCTA() {
         <div className="flex items-center justify-center gap-4">
           <PrimaryButton href="#planes">Ver planes</PrimaryButton>
           <OutlineButton
-            href="https://wa.me/593XXXXXXXXX?text=Hola%20quiero%20probar%20PrimeTrack"
+            href="https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular."
             target="_blank"
             rel="noopener"
           >

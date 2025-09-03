@@ -654,12 +654,15 @@ const AboutUsPage = () => {
             Con PrimeTrack, tener visibilidad y seguridad es más simple de lo
             que crees.
           </p>
-          <div
+          <a
+            href="https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular."
+            target="_blank"
+            rel="noopener"
             className="mt-6 inline-flex rounded-2xl px-6 py-3 font-semibold text-white"
             style={{ backgroundImage: gradient }}
           >
             Contáctanos
-          </div>
+          </a>
         </div>
       </section>
     </div>
