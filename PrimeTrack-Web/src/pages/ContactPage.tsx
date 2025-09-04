@@ -54,16 +54,23 @@ const ContactPage: React.FC = () => {
 
   const whatsappHref =
     "https://wa.me/593992339274?text=Hola%20PrimeTrack%2C%20necesito%20informaci%C3%B3n%20sobre%20planes%20de%20rastreo%20vehicular.";
-
   const mapsEmbedSrc =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.805595702777!2d-78.47723732532342!3d-0.14470513544321567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d58fff8ff40db1%3A0x9f578da496afcf71!2sDe%20los%20%C3%81lamos%20%26%20Av.%206%20de%20Diciembre%2C%20170138%20Quito!5e0!3m2!1ses-419!2sec!4v1756868429688!5m2!1ses-419!2sec";
+
   return (
     <div>
       <section className="section bg-neutral-50">
         <div className="container mx-auto px-4">
+          {/* Encabezado visible de inmediato */}
           <MotionTransition
-            variants={fadeIn("bottom", 0.25)}
+            variants={fadeIn("bottom", {
+              delay: 0.0,
+              duration: 0.6,
+              distance: 16,
+            })}
             className="text-center mb-12"
+            initialVisible
+            inViewDetect={false}
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-900">
               Contáctanos
@@ -75,8 +82,16 @@ const ContactPage: React.FC = () => {
           </MotionTransition>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Formulario */}
-            <MotionTransition variants={fadeIn("right", 0.35)}>
+            {/* Formulario (no espera scroll) */}
+            <MotionTransition
+              variants={fadeIn("right", {
+                delay: 0.05,
+                duration: 0.6,
+                distance: 20,
+              })}
+              initialVisible
+              inViewDetect={false}
+            >
               <div className="card p-6 md:p-8">
                 <h2 className="text-2xl font-bold mb-6 text-neutral-900">
                   Envíanos un Mensaje
@@ -120,7 +135,7 @@ const ContactPage: React.FC = () => {
                         required
                         autoComplete="name"
                         placeholder="Tu nombre y apellido"
-                        className="w-full h-12 px-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-primary/40 focus:border-primary/40 outline-none"
+                        className="w-full h-12 px-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-violet-300 focus:border-violet-300 outline-none"
                       />
                     </div>
                     <div>
@@ -137,7 +152,7 @@ const ContactPage: React.FC = () => {
                         autoComplete="tel"
                         placeholder="+593 9 0000 0000"
                         pattern="^[0-9+()\\s-]{7,}$"
-                        className="w-full h-12 px-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-primary/40 focus:border-primary/40 outline-none"
+                        className="w-full h-12 px-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-violet-300 focus:border-violet-300 outline-none"
                       />
                     </div>
                   </div>
@@ -157,7 +172,7 @@ const ContactPage: React.FC = () => {
                         required
                         autoComplete="email"
                         placeholder="tucorreo@dominio.com"
-                        className="w-full h-12 px-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-primary/40 focus:border-primary/40 outline-none"
+                        className="w-full h-12 px-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-violet-300 focus:border-violet-300 outline-none"
                       />
                     </div>
                     <div>
@@ -172,7 +187,7 @@ const ContactPage: React.FC = () => {
                           id="plan"
                           name="plan"
                           defaultValue=""
-                          className="w-full h-12 px-3 pr-10 bg-white rounded-lg border border-neutral-200 text-neutral-900 focus:ring-2 focus:ring-primary/40 focus:border-primary/40 outline-none appearance-none"
+                          className="w-full h-12 px-3 pr-10 bg-white rounded-lg border border-neutral-200 text-neutral-900 focus:ring-2 focus:ring-violet-300 focus:border-violet-300 outline-none appearance-none"
                         >
                           <option value="" disabled>
                             Selecciona un plan
@@ -203,7 +218,7 @@ const ContactPage: React.FC = () => {
                       rows={5}
                       required
                       placeholder="Cuéntanos brevemente tu necesidad"
-                      className="w-full p-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-primary/40 focus:border-primary/40 outline-none"
+                      className="w-full p-3 bg-white rounded-lg border border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:ring-2 focus:ring-violet-300 focus:border-violet-300 outline-none"
                     />
                     <p className="mt-2 text-xs text-neutral-500">
                       Al enviar aceptas nuestro tratamiento de datos con fines
@@ -213,9 +228,8 @@ const ContactPage: React.FC = () => {
 
                   <button
                     type="submit"
-                    className={`btn-primary w-full inline-flex items-center justify-center gap-2 ${
-                      sending ? "opacity-60 cursor-not-allowed" : ""
-                    }`}
+                    className={`w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-semibold text-white shadow-sm focus:outline-none focus:ring-4 focus:ring-violet-200`}
+                    style={{ backgroundImage: gradient }}
                     disabled={sending}
                     aria-busy={sending}
                   >
@@ -252,8 +266,16 @@ const ContactPage: React.FC = () => {
               </div>
             </MotionTransition>
 
-            {/* Info + Mapa */}
-            <MotionTransition variants={fadeIn("left", 0.35)}>
+            {/* Info + Mapa (no espera scroll) */}
+            <MotionTransition
+              variants={fadeIn("left", {
+                delay: 0.1,
+                duration: 0.6,
+                distance: 20,
+              })}
+              initialVisible
+              inViewDetect={false}
+            >
               <div className="space-y-8">
                 {/* Canales directos */}
                 <div className="card p-6 md:p-8">
@@ -262,7 +284,7 @@ const ContactPage: React.FC = () => {
                   </h2>
                   <div className="space-y-5 text-neutral-700">
                     <a
-                      href="tel:+59321234567"
+                      href="tel:+593992339274"
                       className="flex items-center gap-4 group"
                     >
                       <span
@@ -289,7 +311,7 @@ const ContactPage: React.FC = () => {
                         <Mail className="w-5 h-5" />
                       </span>
                       <span className="group-hover:underline">
-                        erika-narvaez@hotmail.es
+                        info@primetrack.com
                       </span>
                     </a>
 
@@ -304,7 +326,7 @@ const ContactPage: React.FC = () => {
                       <div>
                         <p className="font-medium text-neutral-900">Quito</p>
                         <p className="text-neutral-700">
-                          Av. 6 de Diciembre y de los Alamos
+                          Av. 6 de Diciembre y de los Álamos
                         </p>
                       </div>
                     </div>
@@ -341,10 +363,10 @@ const ContactPage: React.FC = () => {
                 {/* Mapa embebido */}
                 <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-md">
                   <iframe
+                    title="Mapa de ubicación de PrimeTrack en Quito"
                     src={mapsEmbedSrc}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    aria-label="Mapa de ubicación de PrimeTrack en Quito"
                     className="w-full h-[300px]"
                   />
                 </div>

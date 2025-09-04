@@ -187,8 +187,14 @@ const PlansPage = () => {
       <section className="section bg-neutral-50">
         <div className="container mx-auto px-4">
           <MotionTransition
-            variants={fadeIn("bottom", 0.2)}
+            variants={fadeIn("bottom", {
+              delay: 0.0,
+              duration: 0.6,
+              distance: 18,
+            })}
             className="text-center mb-8 md:mb-12"
+            initialVisible
+            inViewDetect={false}
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-900">
               Compara Nuestros Planes
@@ -204,8 +210,14 @@ const PlansPage = () => {
 
           {/* Desktop table */}
           <MotionTransition
-            variants={fadeIn("bottom", 0.35)}
+            variants={fadeIn("bottom", {
+              delay: 0.05,
+              duration: 0.6,
+              distance: 20,
+            })}
             className="hidden md:block overflow-x-auto"
+            initialVisible
+            inViewDetect={false}
           >
             <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
               <table className="w-full min-w-[720px] text-left border-collapse">

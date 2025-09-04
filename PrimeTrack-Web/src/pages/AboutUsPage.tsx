@@ -1,3 +1,4 @@
+// src/pages/AboutUsPage.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MotionTransition } from "@/components/layout/transition-component";
 import { fadeIn } from "@/lib/motion-transitions";
@@ -11,12 +12,11 @@ import {
   Rocket,
   ShieldCheck,
   LineChart,
-  MapPin,
   CalendarDays,
   Hash,
 } from "lucide-react";
 
-/** Brand tokens (alineados a Landing) */
+/** Brand tokens */
 const BRAND = {
   PRIMARY: "#6200F7",
   SECONDARY: "#E73400",
@@ -24,11 +24,12 @@ const BRAND = {
   TEXT_DARK: "#111827",
   TEXT_MUTED: "#6B7280",
   BORDER: "#E5E7EB",
-};
-const gradient = `linear-gradient(90deg, ${BRAND.PRIMARY}, ${BRAND.SECONDARY})`;
-const BASE = import.meta.env.BASE_URL;
+} as const;
 
-/** Átomos UI */
+const gradient = `linear-gradient(90deg, ${BRAND.PRIMARY}, ${BRAND.SECONDARY})`;
+const BASE = import.meta.env.BASE_URL ?? "/";
+
+/** Átomo Card simple */
 function Card({ className = "", ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -38,7 +39,7 @@ function Card({ className = "", ...props }: React.ComponentProps<"div">) {
   );
 }
 
-/** Imagen responsive (para las demás secciones que ya tenías) */
+/** Imagen responsive genérica */
 type PictureProps = {
   src: string;
   alt: string;
@@ -90,10 +91,9 @@ function ResponsivePicture({
   );
 }
 
-/** Contenido inventado (empresa nacida el año pasado) */
+/** Contenido */
 const foundingYear = 2024;
 
-/** Valores (manteniendo tu contenido y estilos con imagen) */
 const values = [
   {
     icon: <Target className="w-6 h-6" />,
@@ -118,38 +118,14 @@ const values = [
   },
 ];
 
-/** Líderes (manteniendo tu contenido) */
-const leaders = [
-  {
-    name: "Juan Pérez",
-    role: "CEO & Fundador",
-    image: `${BASE}img/about/leaders/juan.jpg`,
-    bio: "Estrategia y alianzas. Ex-ops en logística y retail.",
-  },
-  {
-    name: "María García",
-    role: "Directora de Operaciones",
-    image: `${BASE}img/about/leaders/maria.jpg`,
-    bio: "Ejecución en campo y calidad de servicio a escala.",
-  },
-  {
-    name: "Carlos Rodríguez",
-    role: "CTO",
-    image: `${BASE}img/about/leaders/carlos.jpg`,
-    bio: "Arquitectura en la nube y apps móviles.",
-  },
-];
-
 /** =========================
- *  TIMELINE 2025 (sin imágenes, sin controles)
+ *  TIMELINE 2025 lite
  *  ========================= */
-
-/** Tipos */
 type Status = "done" | "in-progress" | "planned";
 type Category = "producto" | "crecimiento" | "operaciones" | "alianzas";
 
 interface TimelineItem {
-  id: string; // anchor id
+  id: string;
   date: string; // YYYY-MM
   quarter: string; // Q1/Q2/Q3/Q4 2025
   title: string;
@@ -159,7 +135,6 @@ interface TimelineItem {
   icon: React.ReactNode;
 }
 
-/** Meta para categorías y estatus */
 const CATEGORY_META: Record<Category, { label: string; dotClass: string }> = {
   producto: { label: "Producto", dotClass: "bg-purple-500" },
   crecimiento: { label: "Crecimiento", dotClass: "bg-pink-500" },
@@ -182,7 +157,6 @@ const STATUS_META: Record<Status, { label: string; className: string }> = {
   },
 };
 
-/** Datos (desde 2025, sin imágenes) */
 const RAW_EVENTS: TimelineItem[] = [
   {
     id: "2025-01-v2",
@@ -238,7 +212,6 @@ const RAW_EVENTS: TimelineItem[] = [
   },
 ];
 
-/** Utilidades para timeline */
 const byDateAsc = (a: TimelineItem, b: TimelineItem) =>
   a.date.localeCompare(b.date);
 
@@ -266,7 +239,114 @@ function Chip({
   );
 }
 
-/** Timeline compacto, sin controles, sin imágenes */
+function TimelineRowLite({
+  item,
+  index,
+  activeId,
+  setActiveId,
+  refCb,
+}: {
+  item: TimelineItem;
+  index: number;
+  activeId: string | null;
+  setActiveId: (id: string) => void;
+  refCb: (el: HTMLDivElement | null) => void;
+}) {
+  const { ref, inView } = useInView({ threshold: 0.6 });
+
+  useEffect(() => {
+    if (inView) setActiveId(item.id);
+  }, [inView, item.id, setActiveId]);
+
+  const sideLeft = index % 2 === 0;
+  const isActive = activeId === item.id;
+
+  return (
+    <motion.div
+      role="listitem"
+      aria-current={isActive ? "step" : undefined}
+      ref={(el) => {
+        ref(el);
+        refCb(el);
+      }}
+      id={item.id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className="mb-10 flex justify-between items-stretch w-full"
+    >
+      {/* Columna izquierda/derecha */}
+      <div
+        className={`w-5/12 ${
+          sideLeft ? "order-1 text-right" : "order-3 text-left"
+        }`}
+      >
+        <div
+          className={`rounded-2xl p-[1px] transition ${
+            isActive ? "shadow-lg" : "shadow-sm"
+          }`}
+          style={{ backgroundImage: gradient }}
+        >
+          <div className="bg-white rounded-2xl p-4 md:p-5 border border-neutral-200">
+            <div className="flex items-center gap-2 text-neutral-500 text-xs">
+              <CalendarDays className="w-4 h-4" /> {formatMonth(item.date)} •{" "}
+              {item.quarter}
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span
+                className={`w-2.5 h-2.5 rounded-full ${
+                  CATEGORY_META[item.category].dotClass
+                }`}
+              />
+              <h3 className="text-base md:text-lg font-semibold text-neutral-900">
+                {item.title}
+              </h3>
+            </div>
+            <p className="mt-1.5 text-neutral-600 text-sm leading-relaxed">
+              {item.description}
+            </p>
+
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <Chip className="border-neutral-200 bg-neutral-50 text-neutral-700">
+                {CATEGORY_META[item.category].label}
+              </Chip>
+              <Chip className={STATUS_META[item.status].className}>
+                {STATUS_META[item.status].label}
+              </Chip>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Nodo central */}
+      <div className="z-10 flex items-center justify-center order-2">
+        <div className="relative w-6 h-6">
+          {isActive && (
+            <span
+              className="absolute inset-0 rounded-full animate-ping opacity-30"
+              style={{ backgroundImage: gradient }}
+            />
+          )}
+          <div
+            className="absolute inset-0 rounded-full border-2 bg-white"
+            style={{ borderColor: BRAND.PRIMARY }}
+          />
+          <div
+            className="absolute inset-1 rounded-full flex items-center justify-center text-white"
+            style={{ backgroundImage: gradient }}
+          >
+            {item.icon}
+          </div>
+        </div>
+      </div>
+
+      {/* Columna vacía para balance */}
+      <div className="w-5/12 order-1" />
+    </motion.div>
+  );
+}
+
 function Timeline2025Lite() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const events = useMemo(() => [...RAW_EVENTS].sort(byDateAsc), []);
@@ -335,122 +415,13 @@ function Timeline2025Lite() {
   );
 }
 
-function TimelineRowLite({
-  item,
-  index,
-  activeId,
-  setActiveId,
-  refCb,
-}: {
-  item: TimelineItem;
-  index: number;
-  activeId: string | null;
-  setActiveId: (id: string) => void;
-  refCb: (el: HTMLDivElement | null) => void;
-}) {
-  const { ref, inView } = useInView({ threshold: 0.6 });
-
-  useEffect(() => {
-    if (inView) setActiveId(item.id);
-  }, [inView, item.id, setActiveId]);
-
-  const sideLeft = index % 2 === 0;
-  const isActive = activeId === item.id;
-
-  return (
-    <motion.div
-      role="listitem"
-      aria-current={isActive ? "step" : undefined}
-      ref={(el) => {
-        ref(el);
-        refCb(el);
-      }}
-      id={item.id}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="mb-10 flex justify-between items-stretch w-full"
-    >
-      {/* Columna izquierda / derecha */}
-      <div
-        className={`w-5/12 ${
-          sideLeft ? "order-1 text-right" : "order-3 text-left"
-        }`}
-      >
-        <div
-          className={`rounded-2xl p-[1px] transition ${
-            isActive ? "shadow-lg" : "shadow-sm"
-          }`}
-          style={{ backgroundImage: gradient }}
-        >
-          <div className="bg-white rounded-2xl p-4 md:p-5 border border-neutral-200">
-            <div className="flex items-center gap-2 text-neutral-500 text-xs">
-              <CalendarDays className="w-4 h-4" /> {formatMonth(item.date)} •{" "}
-              {item.quarter}
-            </div>
-            <div className="mt-1 flex items-center gap-2">
-              <span
-                className={`w-2.5 h-2.5 rounded-full ${
-                  CATEGORY_META[item.category].dotClass
-                }`}
-              />
-              <h3 className="text-base md:text-lg font-semibold text-neutral-900">
-                {item.title}
-              </h3>
-            </div>
-            <p className="mt-1.5 text-neutral-600 text-sm leading-relaxed">
-              {item.description}
-            </p>
-
-            {/* Chips informativos (no interactivos) */}
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              <Chip className="border-neutral-200 bg-neutral-50 text-neutral-700">
-                {CATEGORY_META[item.category].label}
-              </Chip>
-              <Chip className={STATUS_META[item.status].className}>
-                {STATUS_META[item.status].label}
-              </Chip>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Nodo central */}
-      <div className="z-10 flex items-center justify-center order-2">
-        <div className="relative w-6 h-6">
-          {isActive && (
-            <span
-              className="absolute inset-0 rounded-full animate-ping opacity-30"
-              style={{ backgroundImage: gradient }}
-            />
-          )}
-          <div
-            className="absolute inset-0 rounded-full border-2 bg-white"
-            style={{ borderColor: BRAND.PRIMARY }}
-          />
-          <div
-            className="absolute inset-1 rounded-full flex items-center justify-center text-white"
-            style={{ backgroundImage: gradient }}
-          >
-            {item.icon}
-          </div>
-        </div>
-      </div>
-
-      {/* Columna vacía para balance */}
-      <div className="w-5/12 order-1" />
-    </motion.div>
-  );
-}
-
 /** =========================
- *  PÁGINA ABOUT US (manteniendo tu contenido; solo cambia el timeline)
+ *  PÁGINA ABOUT US
  *  ========================= */
-const AboutUsPage = () => {
+const AboutUsPage: React.FC = () => {
   return (
     <div style={{ backgroundColor: BRAND.BG }}>
-      {/* HERO / QUIÉNES SOMOS (manteniendo tu contenido) */}
+      {/* HERO / QUIÉNES SOMOS */}
       <section className="px-6 md:px-8 pt-16 md:pt-24 pb-12 relative overflow-hidden bg-neutral-50">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
@@ -458,7 +429,16 @@ const AboutUsPage = () => {
           aria-hidden="true"
         />
         <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <MotionTransition variants={fadeIn("right", 0.25)}>
+          {/* Imagen / Logo — visible de inmediato */}
+          <MotionTransition
+            variants={fadeIn("right", {
+              delay: 0.05,
+              duration: 0.6,
+              distance: 24,
+            })}
+            initialVisible
+            inViewDetect={false}
+          >
             <div className="relative">
               <ResponsivePicture
                 src={`${BASE}img/PrimeTrack-square.svg`}
@@ -466,12 +446,26 @@ const AboutUsPage = () => {
                 aspect="aspect-square"
                 className="object-contain"
                 formats={[]}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={512}
+                height={512}
               />
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl blur-2xl bg-gradient-to-r from-[#6200F7] to-[#E73400] opacity-30" />
             </div>
           </MotionTransition>
 
-          <MotionTransition variants={fadeIn("left", 0.35)}>
+          {/* Texto — visible de inmediato */}
+          <MotionTransition
+            variants={fadeIn("left", {
+              delay: 0.12,
+              duration: 0.6,
+              distance: 28,
+            })}
+            initialVisible
+            inViewDetect={false}
+          >
             <div>
               <h1 className="text-4xl md:text-5xl font-extrabold mb-5 leading-tight text-neutral-900">
                 Nacimos en {foundingYear} para dar{" "}
@@ -484,7 +478,7 @@ const AboutUsPage = () => {
               </h1>
               <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">
                 Somos una empresa especializada en brindar soluciones de rastreo
-                satelital confiables,modernas y accesibles, diseñadas para
+                satelital confiables, modernas y accesibles, diseñadas para
                 proteger lo que más valoras: tu vehículo, tu carga y tu
                 tranquilidad.
               </p>
@@ -512,10 +506,16 @@ const AboutUsPage = () => {
         </div>
       </section>
 
-      {/* MISIÓN / VISIÓN (manteniendo tu contenido) */}
+      {/* MISIÓN / VISIÓN */}
       <section className="px-6 md:px-8 py-14 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 items-stretch">
-          <MotionTransition variants={fadeIn("bottom", 0.2)}>
+          <MotionTransition
+            variants={fadeIn("bottom", {
+              delay: 0.1,
+              duration: 0.6,
+              distance: 22,
+            })}
+          >
             <Card className="p-6 h-full">
               <div className="flex items-center gap-3 font-semibold">
                 <Building
@@ -530,7 +530,14 @@ const AboutUsPage = () => {
               </p>
             </Card>
           </MotionTransition>
-          <MotionTransition variants={fadeIn("bottom", 0.3)}>
+
+          <MotionTransition
+            variants={fadeIn("bottom", {
+              delay: 0.2,
+              duration: 0.6,
+              distance: 22,
+            })}
+          >
             <Card className="p-6 h-full">
               <div className="flex items-center gap-3 font-semibold">
                 <Target className="w-5 h-5" style={{ color: BRAND.PRIMARY }} />
@@ -543,7 +550,14 @@ const AboutUsPage = () => {
               </p>
             </Card>
           </MotionTransition>
-          <MotionTransition variants={fadeIn("bottom", 0.4)}>
+
+          <MotionTransition
+            variants={fadeIn("bottom", {
+              delay: 0.3,
+              duration: 0.6,
+              distance: 22,
+            })}
+          >
             <Card className="p-6 h-full">
               <div className="flex items-center gap-3 font-semibold">
                 <Rocket className="w-5 h-5" style={{ color: BRAND.PRIMARY }} />
@@ -559,10 +573,10 @@ const AboutUsPage = () => {
         </div>
       </section>
 
-      {/* TIMELINE (reemplazado por la versión sin controles, sin imágenes) */}
+      {/* TIMELINE */}
       <Timeline2025Lite />
 
-      {/* VALORES con imagen (manteniendo tu contenido) */}
+      {/* VALORES */}
       <section className="px-6 md:px-8 py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
@@ -578,7 +592,11 @@ const AboutUsPage = () => {
             {values.map((v, i) => (
               <MotionTransition
                 key={v.title}
-                variants={fadeIn("bottom", 0.12 * (i + 1))}
+                variants={fadeIn("bottom", {
+                  delay: 0.12 * (i + 1),
+                  duration: 0.55,
+                  distance: 20,
+                })}
               >
                 <div
                   className="rounded-2xl p-[1px]"
@@ -614,7 +632,7 @@ const AboutUsPage = () => {
         </div>
       </section>
 
-      {/* CTA (manteniendo tu contenido) */}
+      {/* CTA */}
       <section className="px-6 md:px-8 py-16 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <h3 className="text-3xl md:text-4xl font-extrabold text-neutral-900">

@@ -1,7 +1,7 @@
 // LandingStartup.tsx — versión formal con imágenes en cada sección
 // Stack: React + TS + Tailwind + framer-motion + lucide-react
-// Inspirado en contenidos públicos de empresas de rastreo (personas/empresas, monitoreo 24/7, recuperación, app iOS/Android)
 
+import React from "react";
 import { MotionTransition } from "@/components/layout/transition-component";
 import { fadeIn } from "@/lib/motion-transitions";
 import CountUp from "react-countup";
@@ -24,7 +24,6 @@ import {
   PhoneCall,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import React from "react";
 
 /** Brand tokens */
 const BRAND = {
@@ -36,7 +35,7 @@ const BRAND = {
   BORDER: "#E5E7EB",
 };
 const gradient = `linear-gradient(90deg, ${BRAND.PRIMARY}, ${BRAND.SECONDARY})`;
-const BASE = import.meta.env.BASE_URL; // respeta base en build (/, /subcarpeta/, etc.)
+const BASE = import.meta.env.BASE_URL ?? "/"; // respeta base en build
 
 /** UI atoms */
 function Card({ className = "", ...props }: React.ComponentProps<"div">) {
@@ -304,36 +303,42 @@ function Hero() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* Copy */}
-        <div>
-          <MotionTransition variants={fadeIn("bottom", 0.2)}>
-            <span className="inline-block text-xs md:text-sm font-semibold tracking-widest text-neutral-500 uppercase mb-4">
-              Plataforma de rastreo en tiempo real
-            </span>
-            <h1
-              id="hero-title"
-              className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-neutral-900"
+        {/* Copy (visible de inmediato) */}
+        <MotionTransition
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
+          initialVisible
+          inViewDetect={false}
+        >
+          <span className="inline-block text-xs md:text-sm font-semibold tracking-widest text-neutral-500 uppercase mb-4">
+            Plataforma de rastreo en tiempo real
+          </span>
+          <h1
+            id="hero-title"
+            className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-neutral-900"
+          >
+            Control, seguridad y{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: gradient }}
             >
-              Control, seguridad y{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: gradient }}
-              >
-                tranquilidad
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-neutral-700 max-w-xl mb-6 leading-relaxed">
-              Monitorea tu vehículo o flota 24/7, recibe alertas críticas y toma
-              decisiones con datos en tiempo real.
-            </p>
-          </MotionTransition>
+              tranquilidad
+            </span>
+          </h1>
+          <p className="text-lg md:text-xl text-neutral-700 max-w-xl mb-6 leading-relaxed">
+            Monitorea tu vehículo o flota 24/7, recibe alertas críticas y toma
+            decisiones con datos en tiempo real.
+          </p>
 
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+            transition={{ delay: 0.25, duration: 0.5, ease: "easeOut" }}
             className="flex flex-wrap items-center gap-3"
           >
             <PrimaryButton href="#planes" aria-label="Ver planes disponibles">
@@ -362,16 +367,27 @@ function Hero() {
               <Route className="w-4 h-4" /> Historial 365 días
             </div>
           </div>
-        </div>
+        </MotionTransition>
 
-        {/* Grupo de imágenes (LCP optimizado) */}
-        <MotionTransition variants={fadeIn("bottom", 0.35)}>
+        {/* Grupo de imágenes (priorizado) */}
+        <MotionTransition
+          variants={fadeIn("bottom", {
+            delay: 0.12,
+            duration: 0.6,
+            distance: 18,
+          })}
+          initialVisible
+          inViewDetect={false}
+        >
           <div className="grid grid-cols-2 gap-4">
             <ResponsivePicture
               src={`${BASE}img/Conductor_GPS.jpg`}
               alt="Conductor usando app de rastreo en el auto"
               aspect="aspect-[4/5]"
               formats={[]}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
             <div className="space-y-4">
               <ResponsivePicture
@@ -403,8 +419,14 @@ function UseCases() {
     >
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-12"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="usecases-title"
@@ -422,7 +444,11 @@ function UseCases() {
           {useCases.map((c, i) => (
             <MotionTransition
               key={c.title}
-              variants={fadeIn("bottom", 0.1 * (i + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (i + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <div
                 className="rounded-2xl p-[1px]"
@@ -480,8 +506,14 @@ function Benefits() {
 
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.15)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-14"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="benefits-title"
@@ -498,7 +530,11 @@ function Benefits() {
           {benefits.map((b, idx) => (
             <MotionTransition
               key={b.title}
-              variants={fadeIn("bottom", 0.1 * (idx + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (idx + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <div
                 className="rounded-2xl p-[1px]"
@@ -547,7 +583,7 @@ function Benefits() {
   );
 }
 
-/** Sección: Precios (3 tiers) */
+/** Sección: Precios (2 tiers) */
 function Pricing() {
   return (
     <section
@@ -557,8 +593,14 @@ function Pricing() {
     >
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-10"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="pricing-title"
@@ -575,7 +617,11 @@ function Pricing() {
           {PRICING.map((p, idx) => (
             <MotionTransition
               key={p.id}
-              variants={fadeIn("bottom", 0.1 * (idx + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (idx + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <Card
                 className={`p-6 ${p.badge ? "ring-2 ring-purple-200" : ""}`}
@@ -636,8 +682,14 @@ function CompareTable() {
     >
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-14"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="compare-title"
@@ -731,8 +783,14 @@ function Stats() {
       />
       <div className="relative max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-10"
+          initialVisible
+          inViewDetect={false}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-neutral-900">
             Resultados que importan
@@ -746,7 +804,11 @@ function Stats() {
           {stats.map((stat, i) => (
             <MotionTransition
               key={stat.label}
-              variants={fadeIn("bottom", 0.1 * (i + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (i + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <Card className="p-8">
                 <h3
@@ -775,8 +837,14 @@ function DemoShots() {
     >
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-10"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="demo-title"
@@ -793,7 +861,11 @@ function DemoShots() {
           {mockShots.map((shot, i) => (
             <MotionTransition
               key={shot.title}
-              variants={fadeIn("bottom", 0.1 * (i + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (i + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <div
                 className="rounded-2xl p-[1px]"
@@ -860,8 +932,14 @@ function Features() {
     >
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-12"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="features-title"
@@ -878,7 +956,11 @@ function Features() {
           {items.map((f, i) => (
             <MotionTransition
               key={f.title}
-              variants={fadeIn("bottom", 0.1 * (i + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (i + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <Card className="overflow-hidden">
                 <ResponsivePicture
@@ -912,8 +994,14 @@ function Testimonials() {
     >
       <div className="max-w-6xl mx-auto">
         <MotionTransition
-          variants={fadeIn("bottom", 0.2)}
+          variants={fadeIn("bottom", {
+            delay: 0.05,
+            duration: 0.6,
+            distance: 16,
+          })}
           className="text-center mb-12"
+          initialVisible
+          inViewDetect={false}
         >
           <h2
             id="testimonials-title"
@@ -930,7 +1018,11 @@ function Testimonials() {
           {testimonials.map((t, i) => (
             <MotionTransition
               key={t.name}
-              variants={fadeIn("bottom", 0.1 * (i + 1))}
+              variants={fadeIn("bottom", {
+                delay: 0.1 * (i + 1),
+                duration: 0.6,
+                distance: 18,
+              })}
             >
               <Card className="p-6">
                 <div className="flex items-center gap-4">
@@ -938,6 +1030,10 @@ function Testimonials() {
                     src={t.avatar}
                     alt={t.name}
                     className="w-12 h-12 rounded-full object-cover border"
+                    loading="lazy"
+                    decoding="async"
+                    width={48}
+                    height={48}
                   />
                   <div>
                     <div className="font-semibold text-neutral-900">
@@ -949,6 +1045,9 @@ function Testimonials() {
                     src={t.logo}
                     alt="logo cliente"
                     className="ml-auto h-8 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    height={32}
                   />
                 </div>
                 <p className="mt-4 text-neutral-700 leading-relaxed">
