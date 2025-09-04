@@ -20,35 +20,21 @@ type Feature = {
   name: string;
   basic: FeatureValue;
   pro: FeatureValue;
-  enterprise: FeatureValue;
 };
 
 const featuresList: Feature[] = [
-  { name: "Rastreo en Tiempo Real", basic: true, pro: true, enterprise: true },
-  {
-    name: "Historial de Recorridos",
-    basic: "30 días",
-    pro: "90 días",
-    enterprise: "1 año",
-  },
-  { name: "Alertas de Velocidad", basic: true, pro: true, enterprise: true },
-  { name: "Geocercas", basic: 5, pro: 50, enterprise: "Ilimitadas" },
-  { name: "App Móvil", basic: false, pro: true, enterprise: true },
-  { name: "Optimización de Rutas", basic: false, pro: true, enterprise: true },
-  {
-    name: "Gestión de Mantenimiento",
-    basic: false,
-    pro: true,
-    enterprise: true,
-  },
-  { name: "Reportes Avanzados", basic: false, pro: false, enterprise: true },
-  { name: "API para Integración", basic: false, pro: false, enterprise: true },
-  {
-    name: "Soporte Técnico",
-    basic: "Email",
-    pro: "Prioritario",
-    enterprise: "Dedicado 24/7",
-  },
+  { name: "Rastreo en Tiempo Real", basic: true, pro: true },
+  { name: "Historial de Recorridos", basic: "30 días", pro: "365 días" },
+  { name: "Alertas de Velocidad", basic: true, pro: true },
+  { name: "Bloqueo de Motor", basic: true, pro: true },
+  { name: "Botón de Pánico", basic: true, pro: true },
+  { name: "App Móvil", basic: true, pro: true },
+  { name: "Geocerca de Perimetrales", basic: false, pro: true },
+  { name: "Apertura Remota de Seguros", basic: false, pro: true },
+  { name: "Gestión de Mantenimiento", basic: false, pro: true },
+  { name: "Reportes Avanzados", basic: false, pro: true },
+  { name: "API para Integración", basic: false, pro: true },
+  { name: "Soporte Técnico", basic: "Email", pro: "Prioritario" },
 ];
 
 /** Helpers UI */
@@ -111,11 +97,12 @@ function CellValue({
 }
 
 /** Responsive “cards” for mobile (stacked) */
+type PlanKey = keyof Omit<Feature, "name">; // 'basic' | 'pro'
+
 function MobilePlanCards() {
-  const plans: Array<{ key: keyof Feature; label: string; badge?: string }> = [
-    { key: "basic", label: "Básico" },
-    { key: "pro", label: "Profesional", badge: "Recomendado" },
-    { key: "enterprise", label: "Empresarial" },
+  const plans: Array<{ key: PlanKey; label: string; badge?: string }> = [
+    { key: "basic", label: "Plan Autocontrol" },
+    { key: "pro", label: "Plan Control Total", badge: "Recomendado" },
   ];
 
   return (
@@ -207,8 +194,8 @@ const PlansPage = () => {
               Compara Nuestros Planes
             </h1>
             <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-              Encuentra la solución perfecta para tu flota. El plan{" "}
-              <strong>Profesional</strong> equilibra potencia y precio.
+              Encuentra la solución perfecta para tu flota. El{" "}
+              <strong>Plan Control Total</strong> equilibra potencia y precio.
             </p>
           </MotionTransition>
 
@@ -221,7 +208,7 @@ const PlansPage = () => {
             className="hidden md:block overflow-x-auto"
           >
             <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
-              <table className="w-full min-w-[860px] text-left border-collapse">
+              <table className="w-full min-w-[720px] text-left border-collapse">
                 <caption className="sr-only">
                   Comparativa de características por plan
                 </caption>
@@ -231,19 +218,16 @@ const PlansPage = () => {
                       Características
                     </th>
                     <th className="p-4 text-center text-sm md:text-base font-semibold text-neutral-700">
-                      Básico
+                      Plan Autocontrol
                     </th>
                     <th
-                      className="p-4 text-center text-sm md:text-base font-semibold text-neutral-900 border-x border-neutral-200"
+                      className="p-4 text-center text-sm md:text-base font-semibold border-l border-neutral-200"
                       style={{ backgroundImage: gradient, color: "#fff" }}
                     >
-                      Profesional{" "}
+                      Plan Control Total{" "}
                       <span className="ml-2 text-xs font-semibold bg-white/15 px-2 py-0.5 rounded-full">
                         Recomendado
                       </span>
-                    </th>
-                    <th className="p-4 text-center text-sm md:text-base font-semibold text-neutral-700">
-                      Empresarial
                     </th>
                   </tr>
                 </thead>
@@ -263,14 +247,10 @@ const PlansPage = () => {
                       </td>
 
                       <td
-                        className="p-4 text-center border-x border-neutral-200"
+                        className="p-4 text-center border-l border-neutral-200"
                         style={{ background: "#F4EEFF" }}
                       >
                         <CellValue value={feature.pro} emphasize />
-                      </td>
-
-                      <td className="p-4 text-center">
-                        <CellValue value={feature.enterprise} />
                       </td>
                     </tr>
                   ))}
@@ -281,11 +261,8 @@ const PlansPage = () => {
                     <td className="p-4 text-center">
                       <OutlineButton to="/contact">Elegir</OutlineButton>
                     </td>
-                    <td className="p-4 text-center border-x border-neutral-200">
+                    <td className="p-4 text-center border-l border-neutral-200">
                       <GradientButton to="/contact">Elegir Plan</GradientButton>
-                    </td>
-                    <td className="p-4 text-center">
-                      <OutlineButton to="/contact">Elegir</OutlineButton>
                     </td>
                   </tr>
                 </tbody>

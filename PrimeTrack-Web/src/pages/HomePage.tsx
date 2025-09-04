@@ -159,8 +159,8 @@ const stats = [
 const comparison = [
   {
     feature: "Precio mensual por vehículo",
-    competitors: "$12–$15",
-    prime: "Desde $7.90",
+    competitors: "$12–$20",
+    prime: "Desde $10.00",
   },
   {
     feature: "Cobertura",
@@ -259,42 +259,31 @@ const QA = [
 
 const PRICING = [
   {
-    id: "taxi",
-    name: "Taxi",
-    price: 7.9,
+    id: "basic",
+    name: "Plan Autocontrol",
+    price: 10.0,
     unit: "/mes por vehículo",
     features: [
       "GPS en tiempo real",
-      "Historial de rutas 90 días",
-      "Alertas de desvío",
+      "Botón de pánico",
+      "Bloqueo de motor",
       "App móvil y panel web",
+      "Exceso de velocidad",
     ],
     cta: "#contact",
   },
   {
-    id: "flota",
-    name: "Flotas",
-    price: 6.9,
+    id: "Plus",
+    name: "Plan Control Total",
+    price: 15.0,
     unit: "/mes por vehículo",
     badge: "Más popular",
     features: [
-      "Todo lo de Taxi",
-      "Geocercas ilimitadas",
-      "Reportes automáticos",
-      "Soporte dedicado",
-    ],
-    cta: "#contact",
-  },
-  {
-    id: "particular",
-    name: "Particular",
-    price: 8.9,
-    unit: "/mes por vehículo",
-    features: [
-      "GPS en tiempo real",
-      "Alertas por movimiento",
-      "Botón de pánico",
-      "Soporte por WhatsApp",
+      "Plan Autocontrol +",
+      "Apertura remota de seguros",
+      "Geocercas de parqueo",
+      "Geocercas de perimetrales",
+      "Control de Combustible",
     ],
     cta: "#contact",
   },
@@ -367,10 +356,10 @@ function Hero() {
               <ShieldCheck className="w-4 h-4" /> Monitoreo 24/7
             </div>
             <div className="flex items-center gap-2">
-              <Smartphone className="w-4 h-4" /> App iOS/Android
+              <Smartphone className="w-4 h-4" /> App Android
             </div>
             <div className="flex items-center gap-2">
-              <Route className="w-4 h-4" /> Historial 90 días
+              <Route className="w-4 h-4" /> Historial 365 días
             </div>
           </div>
         </div>
@@ -582,7 +571,7 @@ function Pricing() {
           </p>
         </MotionTransition>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {PRICING.map((p, idx) => (
             <MotionTransition
               key={p.id}

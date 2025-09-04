@@ -188,9 +188,9 @@ const RAW_EVENTS: TimelineItem[] = [
     id: "2025-01-v2",
     date: "2025-01",
     quarter: "Q1 2025",
-    title: "Lanzamiento PrimeTrack v2",
+    title: "Lanzamiento PrimeTrack",
     description:
-      "Nueva interfaz web, mejoras de rendimiento y módulos de reportes.",
+      "Nace una nueva propuesta disruptiva, para conquistar el mercado ecuatoriano.",
     category: "producto",
     status: "done",
     icon: <Rocket className="w-5 h-5" />,
@@ -199,8 +199,8 @@ const RAW_EVENTS: TimelineItem[] = [
     id: "2025-03-sla",
     date: "2025-03",
     quarter: "Q1 2025",
-    title: "SLA 99.9%",
-    description: "Migración de infraestructura y observabilidad 24/7.",
+    title: "App PrimeTrack",
+    description: "Lanzamiento de nuestra aplicación para Android.",
     category: "operaciones",
     status: "done",
     icon: <ShieldCheck className="w-5 h-5" />,
@@ -209,7 +209,7 @@ const RAW_EVENTS: TimelineItem[] = [
     id: "2025-04-api",
     date: "2025-04",
     quarter: "Q2 2025",
-    title: "API pública y Webhooks",
+    title: "API pública",
     description: "Integraciones con ERPs y automatizaciones vía eventos.",
     category: "producto",
     status: "done",
@@ -235,38 +235,6 @@ const RAW_EVENTS: TimelineItem[] = [
     category: "producto",
     status: "in-progress",
     icon: <Rocket className="w-5 h-5" />,
-  },
-  {
-    id: "2025-09-alianza",
-    date: "2025-09",
-    quarter: "Q3 2025",
-    title: "Alianza con aseguradora",
-    description: "Beneficios de prima por uso de rastreo en pólizas selectas.",
-    category: "alianzas",
-    status: "planned",
-    icon: <Handshake className="w-5 h-5" />,
-  },
-  {
-    id: "2025-10-expansion",
-    date: "2025-10",
-    quarter: "Q4 2025",
-    title: "Pilotos en Lima y Bogotá",
-    description:
-      "Expansión gradual con socios locales y soporte horario extendido.",
-    category: "crecimiento",
-    status: "planned",
-    icon: <MapPin className="w-5 h-5" />,
-  },
-  {
-    id: "2025-12-seguridad",
-    date: "2025-12",
-    quarter: "Q4 2025",
-    title: "Programa de cumplimiento de seguridad",
-    description:
-      "Endurecimiento de seguridad y preparación para certificaciones.",
-    category: "operaciones",
-    status: "planned",
-    icon: <ShieldCheck className="w-5 h-5" />,
   },
 ];
 
@@ -515,10 +483,10 @@ const AboutUsPage = () => {
                 </span>
               </h1>
               <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">
-                Somos una startup ecuatoriana de rastreo vehicular. En menos de
-                un año lanzamos app móvil y panel web, habilitamos monitoreo
-                24/7 y hoy acompañamos a familias y pymes a tomar decisiones con
-                datos reales.
+                Somos una empresa especializada en brindar soluciones de rastreo
+                satelital confiables,modernas y accesibles, diseñadas para
+                proteger lo que más valoras: tu vehículo, tu carga y tu
+                tranquilidad.
               </p>
 
               {/* KPIs chicos */}
@@ -569,8 +537,9 @@ const AboutUsPage = () => {
                 Misión
               </div>
               <p className="mt-3 text-neutral-700">
-                Dar visibilidad en tiempo real y herramientas simples para
-                reducir costos y riesgos en movilidad.
+                Proteger lo que más importa a nuestros clientes mediante
+                soluciones de rastreo satelital accesibles, seguras y
+                confiables.
               </p>
             </Card>
           </MotionTransition>
@@ -581,8 +550,9 @@ const AboutUsPage = () => {
                 Visión
               </div>
               <p className="mt-3 text-neutral-700">
-                Ser la plataforma de rastreo preferida por personas y pymes en
-                Ecuador y la región.
+                Ser la empresa líder en rastreo satelital en Ecuador, reconocida
+                por ofrecer planes accesibles, tecnología innovadora al servicio
+                de nuestros clientes.
               </p>
             </Card>
           </MotionTransition>
